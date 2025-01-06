@@ -13,4 +13,6 @@ model Xp {
   score     Int     @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  messageTimeout DateTime @default(now())
+  reactionTimeout DateTime  @default(now())
 }
