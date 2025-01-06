@@ -36,7 +36,7 @@ module.exports = {
         ds_id,
       },
       data: {
-        msg_timeout: timeout,
+        messageTimeout: timeout,
       },
     });
   },
