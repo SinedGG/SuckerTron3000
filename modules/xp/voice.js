@@ -32,10 +32,10 @@ module.exports = (client) => {
       activeUsers.forEach(async (member) => {
         const voiceState = guild.voiceStates.cache.get(member.id);
         if (voiceState.selfMute) {
-          await xp.add(member.id, 1);
+          await xp.add(member.id, member.user.tag, 1);
           console.log(`[XP] ${member.user.tag} is muted + 1 xp`);
         } else {
-          await xp.add(member.id, 2);
+          await xp.add(member.id, member.user.tag, 2);
           console.log(`[XP] ${member.user.tag} is not muted + 2 xp`);
         }
       });
