@@ -10,4 +10,8 @@ module.exports = {
     message: 10,
     reaction: 10,
   },
+
+  checkTimeouts: {
+    voice: 60000,
+  },
 };
