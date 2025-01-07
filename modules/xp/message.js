@@ -8,10 +8,10 @@ module.exports = (client) => {
     const { Timeouts } = await timeout.get(message.author.id);
     if (!Timeouts) return;
 
-    Timeouts.messageTimeout.setSeconds(
-      Timeouts.messageTimeout.getSeconds() + cfg.timeouts.message
+    Timeouts.message_timeout.setSeconds(
+      Timeouts.message_timeout.getSeconds() + cfg.timeouts.message
     );
-    if (Timeouts.messageTimeout < new Date()) {
+    if (Timeouts.message_timeout < new Date()) {
       await xp.add(message.author.id, message.author.tag, cfg.points.message);
       await timeout.setMessage(message.author.id);
       console.log(

@@ -7,10 +7,10 @@ module.exports = (client) => {
     if (user.bot) return;
     const { Timeouts } = await timeout.get(user.id);
     if (!Timeouts) return;
-    Timeouts.reactionTimeout.setSeconds(
-      Timeouts.reactionTimeout.getSeconds() + cfg.timeouts.reaction
+    Timeouts.reaction_timeout.setSeconds(
+      Timeouts.reaction_timeout.getSeconds() + cfg.timeouts.reaction
     );
-    if (Timeouts.reactionTimeout < new Date()) {
+    if (Timeouts.reaction_timeout < new Date()) {
       await xp.add(user.id, user.tag, cfg.points.reaction);
       await timeout.setReaction(user.id);
       console.log(

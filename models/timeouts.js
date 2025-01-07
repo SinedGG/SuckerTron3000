@@ -11,7 +11,7 @@ module.exports = {
       data: {
         Timeouts: {
           update: {
-            messageTimeout: new Date(),
+            message_timeout: new Date(),
           },
         },
       },
@@ -25,7 +25,7 @@ module.exports = {
       data: {
         Timeouts: {
           update: {
-            reactionTimeout: new Date(),
+            reaction_timeout: new Date(),
           },
         },
       },

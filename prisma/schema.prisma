@@ -11,24 +11,36 @@ model User {
   id        Int      @id @default(autoincrement())
   ds_id     String   @unique
   ds_name   String
-  createdAt DateTime @default(now())
+  created_at DateTime @default(now())
   Xp        Xp?
   Timeouts  Timeouts?
+  Streak Streak?
 }
 
 model Xp {
   id        Int      @id @default(autoincrement())
   user_id   Int @unique
   score        Int @default(1)
-  updatedAt DateTime @default(now())
+  updated_at DateTime @default(now())
   User      User     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
 
 model Timeouts {
   id              Int      @id @default(autoincrement())
   user_id         Int @unique
-  messageTimeout  DateTime @default(now())
-  reactionTimeout DateTime @default(now())
+  message_timeout  DateTime @default(now())
+  reaction_timeout DateTime @default(now())
   User      User     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
+}
+
+model Streak{
+  id        Int      @id @default(autoincrement()) 
+  user_id   Int @unique
+  last_score Int @default(0)
+  streak Int   @default(0)
+  top_streak    Int @default(0)
+  give_today Boolean  @default(true)
+  updated_at  DateTime @default(now())
+  User      User     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }

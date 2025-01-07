@@ -15,6 +15,9 @@ module.exports = {
         Timeouts: {
           create: {},
         },
+        Streak: {
+          create: {},
+        },
       },
     });
   },
