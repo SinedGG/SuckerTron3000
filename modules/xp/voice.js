@@ -1,5 +1,6 @@
 module.exports = (client) => {
   const xp = require("@models/xp");
+  const cfg = require("@config/xp");
 
   const { ChannelType } = require("discord.js");
 
@@ -32,11 +33,15 @@ module.exports = (client) => {
       activeUsers.forEach(async (member) => {
         const voiceState = guild.voiceStates.cache.get(member.id);
         if (voiceState.selfMute) {
-          await xp.add(member.id, member.user.tag, 1);
-          console.log(`[XP] ${member.user.tag} is muted + 1 xp`);
+          await xp.add(member.id, member.user.tag, cfg.points.voiceMuted);
+          console.log(
+            `[XP] ${member.user.tag} is muted + ${cfg.points.voiceMuted} xp`
+          );
         } else {
-          await xp.add(member.id, member.user.tag, 2);
-          console.log(`[XP] ${member.user.tag} is not muted + 2 xp`);
+          await xp.add(member.id, member.user.tag, cfg.points.voice);
+          console.log(
+            `[XP] ${member.user.tag} is not muted + ${cfg.points.voice} xp`
+          );
         }
       });
     }
