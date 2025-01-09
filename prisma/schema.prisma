@@ -40,7 +40,7 @@ model Streak{
   last_score Int @default(0)
   streak Int   @default(0)
   top_streak    Int @default(0)
-  give_today Boolean  @default(true)
+  give_today Boolean  @default(false)
   updated_at  DateTime @default(now())
   User      User     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
