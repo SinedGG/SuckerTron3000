@@ -27,4 +27,11 @@ module.exports = {
       },
     });
   },
+  async getAll() {
+    return await prisma.xp.findMany({
+      include: {
+        User: true,
+      },
+    });
+  },
 };

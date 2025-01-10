@@ -4,7 +4,7 @@ module.exports = (client) => {
   require("./message")(client);
   require("./reaction")(client);
   require("./voice")(client);
-
+  require("./give_role")(client);
   setInterval(() => {
     require("./voice")(client);
   }, cfg.checkTimeouts.voice);
