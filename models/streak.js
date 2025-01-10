@@ -30,11 +30,26 @@ module.exports = {
     });
   },
 
-  async update_top_streak( user_id, top_streak){
+  async update_top_streak(user_id, top_streak) {
     return await prisma.streak.update({
       where: { user_id: user_id },
       data: { top_streak: top_streak },
-    })
-  }
-};
+    });
+  },
 
+  async get_top_current_streak() {
+    return await prisma.streak.findMany({
+      orderBy: {
+        top_streak: "desc",
+      },
+      take: 10,
+      include: { User: true },
+    });
+  },
+  async get_user_streaks(ds_id) {
+    return await prisma.user.findUnique({
+      where: { ds_id: ds_id },
+      include: { Streak: true },
+    });
+  },
+};
