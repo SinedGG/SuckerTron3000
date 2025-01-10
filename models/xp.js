@@ -34,4 +34,14 @@ module.exports = {
       },
     });
   },
+  async get_by_user(ds_id) {
+    return await prisma.user.findUnique({
+      where: {
+        ds_id: ds_id,
+      },
+      include: {
+        Xp: true,
+      },
+    });
+  },
 };
