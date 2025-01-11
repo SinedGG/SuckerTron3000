@@ -71,6 +71,8 @@ const calculateScores = (data) => {
       }
     });
 
+    score = Math.min(score, 4);
+
     return { ...user, score };
   });
 };
