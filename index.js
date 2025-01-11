@@ -31,7 +31,7 @@ function deplayCommands() {
   );
 
   guild.commands
-    .set([])
+    .set(commands)
     .then(() => console.log("Command registered!"))
     .catch(console.error);
 }
