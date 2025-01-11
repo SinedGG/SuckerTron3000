@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require("discord.js");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("leaderbord")
-    .setDescription("Replies with Pong!"),
+    .setDescription("Дізнатись інформацію про лідерів серверу"),
   async execute(interaction) {
     const { EmbedBuilder } = require("discord.js");
 
@@ -29,13 +29,12 @@ module.exports = {
     });
 
     const exampleEmbed = new EmbedBuilder()
-      .setTitle("Some title")
+      .setTitle("<:trophyS:1327594869937541140>Таблиця лідерів<:trophyS:1327594869937541140>")
       .setThumbnail(gif.fireworks)
-      .setDescription("Some description heren \n\n\n")
       .addFields()
       .addFields(
         {
-          name: "<a:starsded:1327385723975893094> Таблиця лідерів єБали:",
+          name: "<a:starsded:1327385723975893094> Лідери єБалів:",
           value: score_text,
           inline: true,
         },
@@ -45,7 +44,13 @@ module.exports = {
           inline: true,
         }
       )
-      .setColor("#FFA500");
+      .addFields({
+      value: "<a:rocketsded:1327385729117978707>**Тримайте темп, щоб піднятися вище в рейтингу!**<a:rocketsded:1327385729117978707>",
+      name: "\u200b",
+    })
+    .setFooter({ text: "SDED Community", iconURL: gif.lottie })
+    .setTimestamp()
+    .setColor("#FFA500");
 
     await interaction.reply({ embeds: [exampleEmbed] });
   },
