@@ -42,7 +42,7 @@ module.exports = {
       orderBy: {
         top_streak: "desc",
       },
-      take: 10,
+      take: 15,
       include: { User: true },
     });
   },
