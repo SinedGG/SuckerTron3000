@@ -4,7 +4,7 @@ on: [workflow_dispatch, push, pull_request]
 
 env:
   SERVER_HOST: ${{ secrets.SERVER_IP }}
-  SERVER_USER: ubuntu
+  SERVER_USER: root
   SERVER_PATH: /var/pm2/apps/sucker-tron3000
 
   CONFIG_LOCATION: /var/pm2/configs/sucker-tron3000.config.js
