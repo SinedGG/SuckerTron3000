@@ -44,4 +44,15 @@ module.exports = {
       },
     });
   },
+  async get_top_scored() {
+    return await prisma.xp.findMany({
+      include: {
+        User: true,
+      },
+      orderBy: {
+        score: "desc",
+      },
+      take: 15,
+    });
+  },
 };
