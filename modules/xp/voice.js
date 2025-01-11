@@ -1,4 +1,4 @@
-module.exports = (client) => {
+module.exports = async (client) => {
   const xp = require("@models/xp");
 
   const { ChannelType } = require("discord.js");
@@ -9,7 +9,8 @@ module.exports = (client) => {
     (channel) => channel.type === ChannelType.GuildVoice
   );
 
-  voiceChannels.forEach(async (voiceChannel) => {
+  const users = [];
+  voiceChannels.forEach((voiceChannel) => {
     if (
       voiceChannel.members.size === 0 ||
       voiceChannel.id === guild.afkChannelId
@@ -17,7 +18,7 @@ module.exports = (client) => {
       return;
     }
 
-    const activeUsers = [];
+    const temp_users = [];
 
     voiceChannel.members.forEach((member) => {
       if (
@@ -27,7 +28,7 @@ module.exports = (client) => {
         const user_activity = member.presence.activities
           .filter((activity) => activity.name !== "Custom Status")
           .map((activity) => activity.name);
-        activeUsers.push({
+        temp_users.push({
           id: member.id,
           name: member.user.username,
           mute: guild.voiceStates.cache.get(member.id).selfMute,
@@ -35,16 +36,19 @@ module.exports = (client) => {
         });
       }
     });
-    const result = calculateScores(activeUsers);
-    for (let i = 0; i < result.length; i++) {
-      const user = result[i];
-      const user_score = user.score;
-      await xp.add(user.id, user.name, user_score);
-      console.log(
-        `[XP] ${user.name} got ${user_score} points for being active in voice channel`
-      );
+    if (temp_users.length > 1) {
+      users.push(...temp_users);
     }
   });
+  const result = calculateScores(users);
+  for (let i = 0; i < result.length; i++) {
+    const user = result[i];
+    const user_score = user.score;
+    await xp.add(user.id, user.name, user_score);
+    console.log(
+      `[XP] ${user.name} got ${user_score} points for being active in voice channel`
+    );
+  }
 };
 
 const calculateScores = (data) => {
