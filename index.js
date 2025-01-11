@@ -17,7 +17,7 @@ const client = new Client({
 client.once(Events.ClientReady, (readyClient) => {
   console.log(`Ready! Logged in as ${readyClient.user.tag}`);
   require("./modules/xp")(readyClient);
-  //require("./modules/streak")(readyClient);
+  require("./modules/streak")(readyClient);
 
   require("./handlers/command")(readyClient);
   deplayCommands();
