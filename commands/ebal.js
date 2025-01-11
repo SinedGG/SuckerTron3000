@@ -66,7 +66,7 @@ module.exports = {
         },
         {
           name: " <:exclamationmark:1327388827643543562> Увага",
-          value: `<:memoS:1327385276485472276> Якщо мікрофон **ЗАМУЧЕНО** ${noun(
+          value: `<:memoS:1327385276485472276> Якщо мікрофон **ЗАМУЧЕНО:** ${noun(
             cfg.points.voiceMuted,
             0
           )}  
