@@ -1,5 +1,6 @@
 module.exports = async (client) => {
   const cfg = require("@config/xp");
+  const gif = require("@config/gif");
   const xp = require("@models/xp");
   const anti_abuse = require("./anti_abuse");
 
@@ -28,11 +29,14 @@ module.exports = async (client) => {
 
     const { EmbedBuilder } = require("discord.js");
     const embed = new EmbedBuilder()
-      .setTitle("🌟 Система досвіду - єБали 🌟")
-      .setDescription(
-        `Вітаю 🎉 <@${member.user.id}> , ви покращили свій рівень і здобули роль <@&${role.id}>`
+      .setTitle(
+        "<a:starsded:1327385723975893094> Система досвіду - єБали <a:starsded:1327385723975893094>"
       )
-      .setFooter({ text: "✨ SDED Community ✨" });
+      .setDescription(
+        "<a:partypoppersded:1327417596634464256>Вітаю <@274449343124078593> , ви покращили свій рівень і здобули роль <@&1326269871159378072>"
+      )
+      .setFooter({ text: "SDED Community", iconURL: gif.lottie })
+      .setColor("#FFA500");
 
     const channel = client.channels.cache.get(process.env.MESSAGE_CHANNEL_ID);
     if (channel) {
