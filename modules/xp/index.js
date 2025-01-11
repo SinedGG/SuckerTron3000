@@ -6,11 +6,11 @@ module.exports = (client) => {
 
   require("./voice")(client);
   setInterval(() => {
-    require("./voice")(client);
+    // require("./voice")(client);
   }, cfg.checkTimeouts.voice);
 
-  require("./give_role")(client);
+  // require("./give_role")(client);
   setInterval(() => {
-    require("./give_role")(client);
+    // require("./give_role")(client);
   }, cfg.checkTimeouts.role);
 };
