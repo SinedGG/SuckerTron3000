@@ -48,21 +48,25 @@ module.exports = {
         `<:chartsded:1327252388368879647> Щодня ти можеш підтримувати свій вогник активності!
         <a:firesdednew:1327249055725916231> Слідкуй за своїм прогресом, змагайся з друзями та залишайся у топі лідерів!\n`
       )
-      .addFields({
-        name: "<a:firesdednew:1327249055725916231>Ваш вогник:",
-        value: `<a:alarmclocksded:1327427765682704555>На даний момент у вас ${noun(
-          user_streak ? user_streak.Streak.streak : 0,
-          1
-        )}  поспіль!
+      .addFields(
+        {
+          name: "<a:firesdednew:1327249055725916231>Ваш вогник:",
+          value: `<a:alarmclocksded:1327427765682704555>На даний момент у вас ${noun(
+            user_streak ? user_streak.Streak.streak : 0,
+            1
+          )}  поспіль!
         <a:heartonfiresded:1327427763187093598>Ваш найкращий результат: ${noun(
           user_streak ? user_streak.Streak.top_streak : 0,
           1
         )}  поспіль!\n`,
-      })
-      .setFooter({
-        text: "Залишайтеся активними та не гасіть свій вогник!",
-        iconURL: gif.fire,
-      })
+        },
+        {
+          name: "\u200b",
+          value:
+            "<a:firesdednew:1327249055725916231> **Залишайтеся активними та не гасіть свій вогник!**",
+        }
+      )
+      .setFooter({ text: "SDED Community", iconURL: gif.lottie })
       .setTimestamp();
 
     await interaction.reply({ embeds: [combinedMessage] });

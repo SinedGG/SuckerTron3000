@@ -84,10 +84,11 @@ module.exports = {
             0
           )}**!`,
           value:
-            "<a:starsded:1327385723975893094>Не зупиняйтесь на досягнутому — і отримуйте Єбали кожного дня!",
+            "\u200b\n<a:starsded:1327385723975893094> **Не зупиняйтесь на досягнутому — і отримуйте Єбали кожного дня! **",
         }
       )
       .setFooter({ text: "SDED Community", iconURL: gif.lottie })
+      .setTimestamp()
       .setColor("#FFA500");
 
     await interaction.reply({ embeds: [embed] });
