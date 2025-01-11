@@ -28,6 +28,9 @@ module.exports = (client) => {
 
     try {
       await command.execute(interaction);
+      console.log(
+        `[COMMAND] ${interaction.user.tag} executed /${interaction.commandName}`
+      );
     } catch (error) {
       console.error(error);
       await interaction.reply({

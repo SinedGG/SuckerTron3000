@@ -49,19 +49,19 @@ module.exports = {
                 <:memoS:1327385276485472276> Написання повідомлення: ${noun(
                   cfg.points.message,
                   0
-                )}  
+                )} 
                 <a:growingheartsded:1327385731970109551> Реакція на повідомлення: ${noun(
                   cfg.points.reaction,
                   0
-                )}  
+                )}
                 <:speakermediumvolume:1327382711769370746> Перебування у голосовому каналі: ${noun(
                   cfg.points.voice,
                   0
-                )}  
+                )}/хв  
                 <:videogame:1327382402854813809> Грати однакову гру з іншими учасниками: ${noun(
                   cfg.points.playTogether,
                   0
-                )}  
+                )}/хв  
       `,
         },
         {
@@ -69,7 +69,7 @@ module.exports = {
           value: `<:memoS:1327385276485472276> Якщо мікрофон **ЗАМУЧЕНО:** ${noun(
             cfg.points.voiceMuted,
             0
-          )}  
+          )}/хв  
                   <:noentry:1327388858756890634> За фул мют бали **НЕ НАРАХОВУЮТЬСЯ**   
                   <a:zzzsded:1327385726790144130> У сплячому каналі бали **НЕ НАРАХОВУЮТЬСЯ** 
                 `,

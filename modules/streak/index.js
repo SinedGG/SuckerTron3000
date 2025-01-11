@@ -5,7 +5,7 @@ module.exports = (client) => {
   }, 60000 * 5);
 
   const schedule = require("node-schedule");
-  schedule.scheduleJob("0 0 0 * * *", function () {
+  schedule.scheduleJob("0 0 0 * * *", () => {
     require("./renew")(client);
   });
 };

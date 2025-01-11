@@ -13,6 +13,7 @@ module.exports = {
 
   checkTimeouts: {
     voice: 60000,
+    role: 60000 * 5,
   },
 
   roles: {
