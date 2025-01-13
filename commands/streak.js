@@ -25,7 +25,7 @@ module.exports = {
     ];
 
     const streak = require("@models/streak");
-    const streak_data = await streak.get_top_current_streak();
+    const streak_data = await streak.get_top_streak();
 
     const user_streak = await streak.get_user_streaks(interaction.user.id);
 

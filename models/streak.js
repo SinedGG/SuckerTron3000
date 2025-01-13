@@ -39,6 +39,7 @@ module.exports = {
 
   async get_top_current_streak() {
     return await prisma.streak.findMany({
+      where: { streak: { not: 0 } },
       orderBy: {
         top_streak: "desc",
       },
@@ -46,6 +47,18 @@ module.exports = {
       include: { User: true },
     });
   },
+
+  async get_top_streak() {
+    return await prisma.streak.findMany({
+      where: { streak: { not: 0 } },
+      orderBy: {
+        streak: "desc",
+      },
+      take: 15,
+      include: { User: true },
+    });
+  },
+
   async get_user_streaks(ds_id) {
     return await prisma.user.findUnique({
       where: { ds_id: ds_id },
