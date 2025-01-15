@@ -22,6 +22,11 @@ module.exports = {
       "<:smallorangediamond:1327429783121956964>",
       "<:smallorangediamond:1327429783121956964>",
       "<:smallorangediamond:1327429783121956964>",
+      "<:smallorangediamond:1327429783121956964>",
+      "<:smallorangediamond:1327429783121956964>",
+      "<:smallorangediamond:1327429783121956964>",
+      "<:smallorangediamond:1327429783121956964>",
+      "<:smallorangediamond:1327429783121956964>",
     ];
 
     const streak = require("@models/streak");

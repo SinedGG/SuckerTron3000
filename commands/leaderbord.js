@@ -25,11 +25,15 @@ module.exports = {
 
     let streak_text = "";
     streak_data.forEach((e, i) => {
-      streak_text += `${i + 1}. <@${e.User.ds_id}>\n`;
+      streak_text += `${i + 1}. <@${e.User.ds_id}> - ${
+        e.top_streak
+      } <a:firesdednew:1327249055725916231>\n`;
     });
 
     const exampleEmbed = new EmbedBuilder()
-      .setTitle("<:trophyS:1327594869937541140>Таблиця лідерів<:trophyS:1327594869937541140>")
+      .setTitle(
+        "<:trophyS:1327594869937541140>Таблиця лідерів<:trophyS:1327594869937541140>"
+      )
       .setThumbnail(gif.fireworks)
       .addFields()
       .addFields(
@@ -45,12 +49,13 @@ module.exports = {
         }
       )
       .addFields({
-      value: "<a:rocketsded:1327385729117978707>**Тримайте темп, щоб піднятися вище в рейтингу!**<a:rocketsded:1327385729117978707>",
-      name: "\u200b",
-    })
-    .setFooter({ text: "SDED Community", iconURL: gif.lottie })
-    .setTimestamp()
-    .setColor("#FFA500");
+        value:
+          "<a:rocketsded:1327385729117978707>**Тримайте темп, щоб піднятися вище в рейтингу!**<a:rocketsded:1327385729117978707>",
+        name: "\u200b",
+      })
+      .setFooter({ text: "SDED Community", iconURL: gif.lottie })
+      .setTimestamp()
+      .setColor("#FFA500");
 
     await interaction.reply({ embeds: [exampleEmbed] });
   },
