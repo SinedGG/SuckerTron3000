@@ -21,7 +21,7 @@ module.exports = {
     });
 
     const streak = require("@models/streak");
-    const streak_data = await streak.get_top_current_streak();
+    const streak_data = await streak.get_top_streak();
 
     let streak_text = "";
     streak_data.forEach((e, i) => {

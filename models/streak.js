@@ -41,7 +41,7 @@ module.exports = {
     return await prisma.streak.findMany({
       where: { streak: { not: 0 } },
       orderBy: {
-        top_streak: "desc",
+        streak: "desc",
       },
       take: 15,
       include: { User: true },
@@ -50,9 +50,9 @@ module.exports = {
 
   async get_top_streak() {
     return await prisma.streak.findMany({
-      where: { streak: { not: 0 } },
+      where: { top_streak: { not: 0 } },
       orderBy: {
-        streak: "desc",
+        top_streak: "desc",
       },
       take: 15,
       include: { User: true },
