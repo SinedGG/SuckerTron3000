@@ -25,9 +25,12 @@ module.exports = async (client) => {
         !member.user.bot &&
         !guild.voiceStates.cache.get(member.id).selfDeaf
       ) {
-        const user_activity = member.presence.activities
-          .filter((activity) => activity.name !== "Custom Status")
-          .map((activity) => activity.name);
+        let user_activity = [];
+        if (member.presence) {
+          user_activity = member.presence.activities
+            .filter((activity) => activity.name !== "Custom Status")
+            .map((activity) => activity.name);
+        }
         temp_users.push({
           id: member.id,
           name: member.user.username,
