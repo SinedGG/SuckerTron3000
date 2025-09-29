@@ -25,6 +25,7 @@
     "@root": ".",
     "@models": "models",
     "@config": "config",
-    "@utils": "utils"
+    "@utils": "utils",
+    "@modules": "modules"
   }
 }
