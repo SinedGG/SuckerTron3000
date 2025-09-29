@@ -10,7 +10,15 @@ module.exports = async (client) => {
     const { score } = e;
     const member_id = e.User.ds_id;
     const guild = client.guilds.cache.get(process.env.GUILD_ID);
-    const member = await guild.members.fetch(member_id);
+    try {
+      member = await guild.members.fetch(member_id);
+    } catch (err) {
+      console.warn(
+        `[Role] Cannot fetch member ${member_id}:`,
+        err.message || err
+      );
+      return;
+    }
     anti_abuse(member);
     const role_index = findIndexRange(score, cfg.roles.score);
     if (role_index === -1) return;
