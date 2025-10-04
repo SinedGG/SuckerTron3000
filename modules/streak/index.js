@@ -1,10 +1,10 @@
-module.exports = (client) => {
-  require("./give")(client);
-  setInterval(() => {
-    require("./give")(client);
-  }, 60000 * 5);
+const schedule = require("node-schedule");
 
-  const schedule = require("node-schedule");
+module.exports = (client) => {
+  schedule.scheduleJob("0 5 * * * *", () => {
+    require("./give")(client);
+  });
+
   schedule.scheduleJob("0 0 0 * * *", () => {
     require("./renew")(client);
   });

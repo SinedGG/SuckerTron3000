@@ -1,16 +1,20 @@
+const schedule = require("node-schedule");
+
 module.exports = (client) => {
   const cfg = require("@config/xp");
 
   require("./message")(client);
   require("./reaction")(client);
 
-  require("./voice")(client);
-  setInterval(() => {
+ 
+  schedule.scheduleJob("0 1 * * * *", () => {
     require("./voice")(client);
-  }, cfg.checkTimeouts.voice);
+  });
 
-  require("./give_role")(client);
-  setInterval(() => {
+
+  schedule.scheduleJob("0 10 * * * *", () => {
     require("./give_role")(client);
-  }, cfg.checkTimeouts.role);
+  });
+
+ 
 };

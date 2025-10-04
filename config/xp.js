@@ -11,11 +11,6 @@ module.exports = {
     reaction: 10,
   },
 
-  checkTimeouts: {
-    voice: 60000,
-    role: 60000 * 5,
-  },
-
   roles: {
     id: [
       "1326269871159378072",
