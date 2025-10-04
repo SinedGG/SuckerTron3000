@@ -1,7 +1,7 @@
 const schedule = require("node-schedule");
 
 module.exports = (client) => {
-  schedule.scheduleJob("0 5 * * * *", () => {
+  schedule.scheduleJob("0 */5 * * * *", () => {
     require("./give")(client);
   });
 

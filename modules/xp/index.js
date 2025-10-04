@@ -7,12 +7,12 @@ module.exports = (client) => {
   require("./reaction")(client);
 
  
-  schedule.scheduleJob("0 1 * * * *", () => {
+  schedule.scheduleJob("0 */1 * * * *", () => {
     require("./voice")(client);
   });
 
 
-  schedule.scheduleJob("0 10 * * * *", () => {
+  schedule.scheduleJob("0 */10 * * * *", () => {
     require("./give_role")(client);
   });
 
