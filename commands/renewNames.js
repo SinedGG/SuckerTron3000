@@ -12,8 +12,12 @@ module.exports = {
     const streak_data = await streak.give_data();
     for (let i = 0; i < streak_data.length; i++) {
       let user_streak = streak_data[i].streak;
-      if(user_streak > 0){
-      update_name(interaction.client, streak_data[i].User.ds_id, ` | ${user_streak} 🔥`);
+      if (user_streak > 0) {
+        update_name(
+          interaction.client,
+          streak_data[i].User.ds_id,
+          ` | ${user_streak} 🔥`,
+        );
       }
     }
 

@@ -1,15 +1,17 @@
 module.exports = async (client) => {
   const xp = require("@models/xp");
+  const cfg = require("@config/xp");
 
   const { ChannelType } = require("discord.js");
 
   const guild = client.guilds.cache.get(process.env.GUILD_ID);
 
   const voiceChannels = guild.channels.cache.filter(
-    (channel) => channel.type === ChannelType.GuildVoice
+    (channel) => channel.type === ChannelType.GuildVoice,
   );
 
   const users = [];
+
   voiceChannels.forEach((voiceChannel) => {
     if (
       voiceChannel.members.size === 0 ||
@@ -18,52 +20,65 @@ module.exports = async (client) => {
       return;
     }
 
-    const temp_users = [];
+    const tempUsers = [];
 
     voiceChannel.members.forEach((member) => {
-      if (
-        !member.user.bot &&
-        !guild.voiceStates.cache.get(member.id).selfDeaf
-      ) {
-        let user_activity = [];
+      const voiceState = guild.voiceStates.cache.get(member.id);
+
+      if (!member.user.bot && !voiceState.selfDeaf) {
+        let userActivity = [];
+
         if (member.presence) {
-          user_activity = member.presence.activities
+          userActivity = member.presence.activities
             .filter((activity) => activity.name !== "Custom Status")
             .map((activity) => activity.name);
         }
-        temp_users.push({
+
+        tempUsers.push({
           id: member.id,
           name: member.user.username,
-          mute: guild.voiceStates.cache.get(member.id).selfMute,
-          activity: user_activity,
+          mute: voiceState.selfMute,
+          activity: userActivity,
         });
       }
     });
-    if (temp_users.length > 1) {
-      users.push(...temp_users);
+
+    if (tempUsers.length > 1) {
+      users.push(...tempUsers);
     }
   });
+
   const result = calculateScores(users);
-  for (let i = 0; i < result.length; i++) {
-    const user = result[i];
-    const user_score = user.score;
-    await xp.add(user.id, user.name, user_score);
+
+  for (const user of result) {
+    const member = guild.members.cache.get(user.id);
+
+    let userScore = user.score;
+
+    if (member?.roles.cache.has(cfg.roles.serverBooster)) {
+      userScore *= 2;
+    }
+
+    await xp.add(user.id, user.name, userScore);
+
     console.log(
-      `[XP] ${user.name} got ${user_score} points for being active in voice channel`
+      `[XP] ${user.name} got ${userScore} points for being active in voice channel`,
     );
   }
 };
 
 const calculateScores = (data) => {
   const cfg = require("@config/xp");
+
   return data.map((user, _, array) => {
     let score = user.mute ? cfg.points.voiceMuted : cfg.points.voice;
 
     array.forEach((otherUser) => {
       if (user.id !== otherUser.id) {
         const hasCommonActivity = user.activity.some((activity) =>
-          otherUser.activity.includes(activity)
+          otherUser.activity.includes(activity),
         );
+
         if (
           hasCommonActivity &&
           user.activity.length > 0 &&
