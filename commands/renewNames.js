@@ -11,13 +11,34 @@ module.exports = {
   async execute(interaction) {
     const streak_data = await streak.give_data();
     for (let i = 0; i < streak_data.length; i++) {
-      let user_streak = streak_data[i].streak;
-      if (user_streak > 0) {
+      if (streak_data[i].give_today == true && streak_data[i].streak > 0) {
         update_name(
           interaction.client,
           streak_data[i].User.ds_id,
-          ` | ${user_streak} 🔥`,
+          ` | ${streak_data[i].streak} 🔥`,
         );
+      } else if (
+        streak_data[i].give_today == false &&
+        streak_data[i].streak > 0 &&
+        streak_data[i].freeze_days == 2
+      ) {
+        update_name(
+          interaction.client,
+          streak_data[i].User.ds_id,
+          ` | ${streak_data[i].streak} 💧`,
+        );
+      } else if (
+        streak_data[i].give_today == false &&
+        streak_data[i].streak > 0 &&
+        streak_data[i].freeze_days == 1
+      ) {
+        update_name(
+          interaction.client,
+          streak_data[i].User.ds_id,
+          ` | ${streak_data[i].streak} 🧊`,
+        );
+      } else {
+        update_name(interaction.client, streak_data[i].User.ds_id, ``);
       }
     }
 
