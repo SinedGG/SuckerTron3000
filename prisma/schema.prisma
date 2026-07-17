@@ -41,6 +41,7 @@ model Streak{
   streak Int   @default(0)
   top_streak    Int @default(0)
   give_today Boolean  @default(false)
+  freeze_days Int @default(2)
   updated_at  DateTime @default(now())
   User      User     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }

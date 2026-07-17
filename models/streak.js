@@ -37,6 +37,19 @@ module.exports = {
     });
   },
 
+  async update_freeze_days(user_id, freeze_days) {
+    return await prisma.streak.update({
+      where: { user_id: user_id },
+      data: { freeze_days: freeze_days },
+    });
+  },
+
+  async renew_freeze_days() {
+    return await prisma.streak.updateMany({
+      data: { freeze_days: 2 },
+    });
+  },
+
   async get_top_current_streak() {
     return await prisma.streak.findMany({
       where: { streak: { not: 0 } },
@@ -64,5 +77,5 @@ module.exports = {
       where: { ds_id: ds_id },
       include: { Streak: true },
     });
-  },
+  }
 };

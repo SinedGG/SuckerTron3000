@@ -39,6 +39,10 @@ module.exports = {
       leaderboard += `${emoji[i]} <@${e.User.ds_id}>\n`;
     });
 
+    if (leaderboard === "") {
+      leaderboard = "Ніхто ще не підтримує свій вогник!";
+    }
+
     const combinedMessage = new EmbedBuilder()
       .setColor("#FFA500")
       .setThumbnail(gif.fire)
@@ -66,7 +70,11 @@ module.exports = {
         <a:heartonfiresded:1327427763187093598>Ваш найкращий результат: ${noun(
           user_streak ? user_streak.Streak.top_streak : 0,
           1
-        )}  поспіль!\n`,
+        )}  поспіль!\n
+        🧊 Залишок заморозок на місяць: ${noun(
+          user_streak ? user_streak.Streak.freeze_days : 0,
+          1
+        )}`,
         },
         {
           name: "\u200b",
