@@ -7,7 +7,7 @@ module.exports = async (client) => {
     const user_score = streak_data[i].User.Xp.score;
     await streak.update_last_score(streak_data[i].user_id, user_score);
     if (streak_data[i].give_today == false) {
-      if (streak_data[i].freeze_days > 0) {
+      if (streak_data[i].streak > 0 && streak_data[i].freeze_days > 0) {
         await streak.update_freeze_days(
           streak_data[i].user_id,
           streak_data[i].freeze_days - 1,
